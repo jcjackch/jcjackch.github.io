@@ -381,7 +381,7 @@
                         </div>
 
                         <!-- Paper 7 -->
-                        <div class="paper-card bg-white rounded-xl p-4 border border-slate-100 flex flex-col md:flex-row gap-6">
+                        <!-- <div class="paper-card bg-white rounded-xl p-4 border border-slate-100 flex flex-col md:flex-row gap-6">
                             <div class="w-full md:w-48 shrink-0 flex items-center justify-center bg-slate-50 rounded-lg overflow-hidden border border-slate-50 min-h-[140px]">
                                 <img src="images/structgs.gif" alt="Paper Thumbnail" class="max-h-32 w-auto object-contain transition-transform duration-500 hover:scale-105">
                             </div>
@@ -401,7 +401,7 @@
                                     <a href="#" class="px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 rounded-full hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-database mr-1"></i> Dataset</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </section>
 
@@ -477,9 +477,55 @@
                 <!-- Gallery Section -->
                 <section id="gallery" class="fade-in-up scroll-mt-24 mb-12">
                     <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Personal Gallery</h2>
-                    <p class="text-sm text-slate-600 mb-6">
-                        I love photography, traveling and anything outdoors. When my algorithms are not generating image, I generate image with my own camera. If you find me anywhere, I would be more than happy to help with your portrait shoots!
-                    </p>
+                    <div class="text-sm text-slate-600 mb-6 leading-relaxed">
+                        I love photography, traveling and anything 
+                        <span class="relative inline-block z-20">
+                            <button onclick="toggleHikePopup(event)" class="group relative inline-block font-bold text-slate-600 hover:text-emerald-600 transition-colors cursor-pointer border-b border-dotted border-slate-400 hover:border-emerald-600 focus:outline-none">
+                                outdoor
+                            </button>
+                            
+                            <div id="hike-popover" class="hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 sm:w-80 bg-white rounded-xl shadow-xl border border-slate-200 p-4 transform transition-all duration-200 text-left font-normal cursor-auto">
+                                <div class="absolute top-full left-1/2 -translate-x-1/2 border-[8px] border-transparent border-t-white"></div>
+                                <div class="absolute top-full left-1/2 -translate-x-1/2 border-[9px] border-transparent border-t-slate-200 -z-10 mt-[1px]"></div>
+                                
+                                <h3 class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
+                                    <i class="fas fa-mountain text-emerald-600"></i> My Top-5 Hikes
+                                </h3>
+                                <ul class="space-y-3">
+                                    <li>
+                                        <a href="https://www.komoot.com/tour/2613176026?ref=itd&share_token=a5JdrZwKXMWYE4iFalV77EHb34sTe8MOrZdtL3tyxOfurMuhF5&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
+                                            <span class="leading-tight"><span class="font-semibold">Tre Cime di Lavaredo</span> — Auronzo di Cadore, IT</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.komoot.com/tour/2660114199?ref=itd&share_token=aPs0ueJIfr6DBPUhcSTjGZ3ZOiWN8KU8ytYJkwx3sdB4KtPk6K&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
+                                            <span class="leading-tight"><span class="font-semibold">Oeschinensee</span> — Bern, CH</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.komoot.com/tour/2655126654?ref=itd&share_token=aWPTPbugjb47iFZ3rAeEzeunQaJ6QI1lpk48SvXViDlY5adZ01&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
+                                            <span class="leading-tight"><span class="font-semibold">Morteratsch Glacier</span> — Pontresina, CH</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.komoot.com/tour/1860429936?ref=itd&share_token=al2N4LCXtrWSlPwlmxnSjWrhqhwM8sKlLtHt1oqELj0Tt2qAUF&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
+                                            <span class="leading-tight"><span class="font-semibold">Seiser Alm</span> — Kastelruth - Castelrotto, IT</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.komoot.com/tour/1808857613?ref=itd&share_token=av9bexat24Ab011ViYPJw2mGDd1jdS3EmftCggcPPE70FEa6wp&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
+                                            <span class="leading-tight"><span class="font-semibold">Olpererhutte</span> — Finkenberg, AT</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </span>. When my algorithms are not generating image, I generate image with my own camera. If you find me anywhere, I would be more than happy to help with your portrait shoots!
+                    </div>
 
                     <div class="relative group">
                         
@@ -634,6 +680,14 @@
             event.stopPropagation(); // Stops the click from instantly closing the popover
             const popover = document.getElementById('email-popover');
             popover.classList.toggle('hidden');
+        }
+
+        function toggleHikePopup(e) {
+            var event = e || window.event;
+            if (event) event.stopPropagation();
+            
+            const popover = document.getElementById('hike-popover');
+            if (popover) popover.classList.toggle('hidden');
         }
 
         // Optional: Close the popover if clicking anywhere else on the screen
