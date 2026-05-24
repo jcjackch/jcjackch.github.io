@@ -9,7 +9,7 @@
     <!-- Font Awesome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -90,6 +90,37 @@
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
+
+        .animate-blob {
+            animation: blob 14s infinite ease-in-out;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(24px, -32px) scale(1.08); }
+            66% { transform: translate(-20px, 20px) scale(0.96); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-blob,
+            .fade-in-up,
+            .timeline-dot::before {
+                animation: none;
+            }
+
+            .fade-in-up {
+                opacity: 1;
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 selection:text-blue-900">
@@ -111,7 +142,7 @@
                         <!-- Profile Image -->
                         <div class="relative w-40 h-40 mx-auto lg:mx-0 mb-6 group cursor-pointer">
                             <div class="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
-                            <img id="profile-image" src="" alt="Profile" class="relative w-full h-full rounded-full object-cover border-4 border-white shadow-md transform transition duration-500 group-hover:scale-105">
+                            <img id="profile-image" src="images/7951755006959_.pic_hd-2.jpg" alt="Profile" class="relative w-full h-full rounded-full object-cover border-4 border-white shadow-md transform transition duration-500 group-hover:scale-105">
                         </div>
 
                         <h1 class="text-3xl font-bold text-slate-900 tracking-tight mb-2">Jianchun Chen</h1>
@@ -127,7 +158,7 @@
                             </a> -->
 
                             <div id="safe-email-container" class="relative inline-block">
-                                <button onclick="toggleEmailPopup(event)" class="p-2 bg-white rounded-lg shadow-sm hover:shadow-md hover:text-blue-600 transition-all border border-slate-100 cursor-pointer focus:outline-none" title="Contact Email">
+                                <button type="button" onclick="toggleEmailPopup(event)" class="p-2 bg-white rounded-lg shadow-sm hover:shadow-md hover:text-blue-600 transition-all border border-slate-100 cursor-pointer focus:outline-none" title="Contact Email" aria-label="Show contact email">
                                     <i class="fas fa-envelope"></i>
                                 </button>
                                 <div id="email-popover" class="hidden absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-max bg-slate-900 text-white text-[11px] px-3 py-2 rounded shadow-xl z-50">
@@ -136,16 +167,16 @@
                                 </div>
                             </div>
 
-                            <a href="https://scholar.google.com/citations?user=PInyMg8AAAAJ" class="p-2 bg-white rounded-lg shadow-sm hover:shadow-md hover:text-blue-600 transition-all border border-slate-100" title="Google Scholar">
+                            <a href="https://scholar.google.com/citations?user=PInyMg8AAAAJ" class="p-2 bg-white rounded-lg shadow-sm hover:shadow-md hover:text-blue-600 transition-all border border-slate-100" title="Google Scholar" aria-label="Google Scholar">
                                 <i class="fas fa-graduation-cap"></i>
                             </a>
                             <!-- <a href="https://github.com/jcjackch" class="p-2 bg-white rounded-lg shadow-sm hover:shadow-md hover:text-slate-900 transition-all border border-slate-100" title="GitHub">
                                 <i class="fab fa-github"></i>
                             </a> -->
-                            <a href="https://www.linkedin.com/in/jianchun-chen-596122220/" target="_blank" class="p-2 bg-white rounded-lg shadow-sm hover:shadow-md hover:text-blue-700 transition-all border border-slate-100" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/jianchun-chen-596122220/" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-lg shadow-sm hover:shadow-md hover:text-blue-700 transition-all border border-slate-100" title="LinkedIn" aria-label="LinkedIn">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="https://x.com/thejackchan" target="_blank" class="p-2 bg-white rounded-lg shadow-sm hover:shadow-md hover:text-black transition-all border border-slate-100" title="X">
+                            <a href="https://x.com/thejackchan" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-lg shadow-sm hover:shadow-md hover:text-black transition-all border border-slate-100" title="X" aria-label="X">
                                 <i class="fa-brands fa-x-twitter"></i>
                             </a>
                         </div>
@@ -169,7 +200,7 @@
                 <!-- About Section -->
                 <section id="about" class="fade-in-up delay-100 scroll-mt-24">
                     <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Biography</h2>
-                    <div class="prose prose-slate max-w-none text-slate-600 leading-7">
+                    <div class="max-w-none text-slate-600 leading-7">
                         <p class="mb-4">
                             I am currently a Ph.D. student at the <strong class="text-slate-800">Visual Computing and AI department, Max Planck Institute for Informatics</strong>, working with Prof. <a href="https://people.mpi-inf.mpg.de/~theobalt/"> Christian Theobalt </a>, <a href="https://people.mpi-inf.mpg.de/~mhaberma/"> Dr. Marc Habermann</a> and researchers from Google through <a href="https://www.via-center.science/"> VIA center</a>. 
                             Prior to this, I obtained my Master's degree in Robotics from <strong class="text-slate-800">Carnegie Mellon University</strong> with Prof. <a href="http://www.humansensing.cs.cmu.edu/"> Fernando De la Torre </a> and Bachelor's degree from <strong class="text-slate-800">Xiamen University</strong> in my beautiful hometown.
@@ -213,7 +244,7 @@
                         <!-- <div class="relative z-10">
                             <p class="text-xs text-slate-500 italic">
                                 I never take free credit without 
-                                <button onclick="toggleContributionCode(event)" class="group relative inline-block font-bold text-slate-600 hover:text-blue-600 transition-colors cursor-pointer border-b border-dotted border-slate-400 hover:border-blue-600 focus:outline-none">
+                                <button type="button" onclick="toggleContributionCode(event)" class="group relative inline-block font-bold text-slate-600 hover:text-blue-600 transition-colors cursor-pointer border-b border-dotted border-slate-400 hover:border-blue-600 focus:outline-none">
                                     Sufficient
                                 </button> 
                                 contribution.
@@ -245,19 +276,19 @@
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight">
-                                    <a href="#" class="hover:text-blue-600 transition-colors">EgoRelight: Egocentric Human Capture and Illumination Recovery for Relightable and Photoreal Avatar Rendering</a>
+                                    <span>EgoRelight: Egocentric Human Capture and Illumination Recovery for Relightable and Photoreal Avatar Rendering</span>
                                 </h3>
                                 <p class="text-sm text-slate-600 mb-2">
-                                    <span class="font-semibold text-slate-900">Jianchun Chen</span>, <a href="https://www.zhangyinda.com/">Yinda Zhang</a>, <a href="https://scholar.google.com/citations?&user=lJ3VfV8AAAAJ">Rohit Pandey</a>, <a href="https://thabobeeler.com/">Thabo Beeler</a>, <a href="https://people.mpi-inf.mpg.de/~mhaberma/">Marc Habermann</a>, <a href="https://people.mpi-inf.mpg.de/~theobalt/">Christian Theobalt</a>
+                                    <span class="font-semibold text-slate-900">Jianchun Chen</span>, <a href="https://www.zhangyinda.com/">Yinda Zhang</a>, <a href="https://scholar.google.com/citations?&amp;user=lJ3VfV8AAAAJ">Rohit Pandey</a>, <a href="https://thabobeeler.com/">Thabo Beeler</a>, <a href="https://people.mpi-inf.mpg.de/~mhaberma/">Marc Habermann</a>, <a href="https://people.mpi-inf.mpg.de/~theobalt/">Christian Theobalt</a>
                                 </p>
-                                <p class="text-sm text-slate-500 italic mb-3">ACM Transactions on Graphics (Proceedings of SIGGRAPH), 2026 
-                                    <!-- <span class="text-red-500 text-xs font-bold ml-2">Oral Presentation</span></p> -->
+                                <p class="text-sm text-slate-500 italic mb-3">ACM Transactions on Graphics (Proceedings of SIGGRAPH), 2026</p>
+                                    <!-- <span class="text-red-500 text-xs font-bold ml-2">Oral Presentation</span> -->
                                 <p class="text-sm text-slate-600 mb-4 line-clamp-2">
                                     TLDR: A mixed-reality telepresence system in-the-wild with egocentric human capture, relightable avatar curation and inverse-rendering for HDR environment map recovery.
                                 </p>
                                 <div class="flex gap-2">
-                                    <a href="#" class="px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 rounded-full hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-globe mr-1"></i> Website</a>
-                                    <a href="#" class="px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 rounded-full hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-database mr-1"></i> Dataset</a>
+                                    <span class="px-3 py-1 text-xs font-medium bg-slate-50 text-slate-400 rounded-full cursor-not-allowed" title="Coming soon"><i class="fas fa-globe mr-1"></i> Website</span>
+                                    <span class="px-3 py-1 text-xs font-medium bg-slate-50 text-slate-400 rounded-full cursor-not-allowed" title="Coming soon"><i class="fas fa-database mr-1"></i> Dataset</span>
                                     <!-- <a href="#" class="px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 rounded-full hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-video mr-1"></i> Video</a> -->
                                 </div>
                             </div>
@@ -269,14 +300,14 @@
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight">
-                                    <a href="#" class="hover:text-blue-600 transition-colors">Faster 3D Gaussian Splatting Convergence via Structure-Aware Densification</a>
+                                    <a href="https://vcai.mpi-inf.mpg.de/projects/SAD-GS/" class="hover:text-blue-600 transition-colors">Faster 3D Gaussian Splatting Convergence via Structure-Aware Densification</a>
                                 </h3>
                                 <p class="text-sm text-slate-600 mb-2">
                                     <a href="https://people.mpi-inf.mpg.de/~llyu/">Linjie Lyu</a>, <a href="https://ayushtewari.com/">Ayush Tewari</a>, <span class="font-semibold text-slate-900">Jianchun Chen</span>, <a href="https://people.mpi-inf.mpg.de/~tleimkue/">Thomas Leimkühler</a>, <a href="https://people.mpi-inf.mpg.de/~theobalt/">Christian Theobalt</a>
                                 </p>
                                 <p class="text-sm text-slate-500 italic mb-3">SIGGRAPH Conference Papers, 2026</p>
                                 <p class="text-sm text-slate-600 mb-4 line-clamp-2">
-                                    TLDR: A structure-award densification approach that converges 3DGS in ~50s.
+                                    TLDR: A structure-aware densification approach that converges 3DGS in ~50s.
                                 </p>
                                 <div class="flex gap-2">
                                     <a href="https://vcai.mpi-inf.mpg.de/projects/SAD-GS/" class="px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 rounded-full hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-globe mr-1"></i> Website</a>
@@ -291,12 +322,12 @@
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight">
-                                    <a href="#" class="hover:text-blue-600 transition-colors">OLATverse: A Large-scale Real-world Object Dataset with Precise Lighting Control</a>
+                                    <a href="https://vcai.mpi-inf.mpg.de/projects/OLATverse/" class="hover:text-blue-600 transition-colors">OLATverse: A Large-scale Real-world Object Dataset with Precise Lighting Control</a>
                                 </h3>
                                 <p class="text-sm text-slate-600 mb-2">
                                     <a href="https://xilongzhou.github.io/">Xilong Zhou</a>, <span class="font-semibold text-slate-900">Jianchun Chen*</span>, <a href="https://people.mpi-inf.mpg.de/~prao/">Pramod Rao</a>*, <a href="https://people.mpi-inf.mpg.de/~tteufel/">Timo Teufel</a>, <a href="https://people.mpi-inf.mpg.de/~llyu/">Linjie Lyu</a>, Tigran Minasian, <a href="https://people.mpi-inf.mpg.de/~osotnych/">Oleksandr Sotnychenko</a>, <a href="https://www.xxlong.site/">Xiao-Xiao Long</a>, <a href="https://people.mpi-inf.mpg.de/~mhaberma/">Marc Habermann</a>, <a href="https://people.mpi-inf.mpg.de/~theobalt/">Christian Theobalt</a>
                                 </p>
-                                <p class="text-sm text-slate-500 italic mb-3">Proceedings of the Computer Vision and Pattern Recognition Conference, 2026 <span class="font-bold">(Oral)</span></p>
+                                <p class="text-sm text-slate-500 italic mb-3">Proceedings of the Computer Vision and Pattern Recognition Conference, 2026 <span class="font-bold">(Oral; Best Paper Award Candidate)</span></p>
                                 <p class="text-sm text-slate-600 mb-4 line-clamp-2">
                                     TLDR: A real-world capture w/ ~800 objects from the Lightstage, hopefully pave the way for 3D generative models to have realistic relightable appearance.
                                 </p>
@@ -313,12 +344,12 @@
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight">
-                                    <a href="#" class="hover:text-blue-600 transition-colors">Relightable Holoported Characters: Capturing and Relighting Dynamic Human Performance from Sparse Views</a>
+                                    <a href="https://vcai.mpi-inf.mpg.de/projects/RHC/" class="hover:text-blue-600 transition-colors">Relightable Holoported Characters: Capturing and Relighting Dynamic Human Performance from Sparse Views</a>
                                 </h3>
                                 <p class="text-sm text-slate-600 mb-2">
                                     <a href="https://people.mpi-inf.mpg.de/~ksingh/">Kunwar Maheep Singh</a>, <span class="font-semibold text-slate-900">Jianchun Chen</span>, <a href="https://people.mpi-inf.mpg.de/~golyanik/">Vladislav Golyanik</a>, <a href="http://stephangarbin.com/">Stephan J. Garbin</a>, <a href="https://thabobeeler.com/">Thabo Beeler</a>, <a href="https://rishabhdabral.github.io/">Rishabh Dabral</a>, <a href="https://people.mpi-inf.mpg.de/~mhaberma/">Marc Habermann</a>, <a href="https://people.mpi-inf.mpg.de/~theobalt/">Christian Theobalt</a>
                                 </p>
-                                <p class="text-sm text-slate-500 italic mb-3">Proceedings of the Computer Vision and Pattern Recognition Conference, 2026 <span class="font-bold">(Oral)</span></p>
+                                <p class="text-sm text-slate-500 italic mb-3">Proceedings of the Computer Vision and Pattern Recognition Conference, 2026 <span class="font-bold">(Oral; Best Paper Award Candidate)</span></p>
                                 <p class="text-sm text-slate-600 mb-4 line-clamp-2">
                                     TLDR: A new scheme of full-body human capture from the Lightstage, paired with relighting techniques from sparse imagery inputs.
                                 </p>
@@ -335,15 +366,15 @@
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight">
-                                    <a href="#" class="hover:text-blue-600 transition-colors">EgoAvatar: Egocentric View-Driven and Photorealistic Full-body Avatars</a>
+                                    <a href="https://vcai.mpi-inf.mpg.de/projects/EgoAvatar/" class="hover:text-blue-600 transition-colors">EgoAvatar: Egocentric View-Driven and Photorealistic Full-body Avatars</a>
                                 </h3>
                                 <p class="text-sm text-slate-600 mb-2">
-                                    <span class="font-semibold text-slate-900">Jianchun Chen</span>, <a href="https://scholar.google.de/citations?user=j_nx2T4AAAAJ">Jian Wang</a>, <a href="https://www.zhangyinda.com/">Yinda Zhang</a>, <a href="https://scholar.google.com/citations?&user=lJ3VfV8AAAAJ">Rohit Pandey</a>, <a href="https://thabobeeler.com/">Thabo Beeler</a>, <a href="https://people.mpi-inf.mpg.de/~mhaberma/">Marc Habermann</a>, <a href="https://people.mpi-inf.mpg.de/~theobalt/">Christian Theobalt</a>
+                                    <span class="font-semibold text-slate-900">Jianchun Chen</span>, <a href="https://scholar.google.de/citations?user=j_nx2T4AAAAJ">Jian Wang</a>, <a href="https://www.zhangyinda.com/">Yinda Zhang</a>, <a href="https://scholar.google.com/citations?&amp;user=lJ3VfV8AAAAJ">Rohit Pandey</a>, <a href="https://thabobeeler.com/">Thabo Beeler</a>, <a href="https://people.mpi-inf.mpg.de/~mhaberma/">Marc Habermann</a>, <a href="https://people.mpi-inf.mpg.de/~theobalt/">Christian Theobalt</a>
                                 </p>
-                                <p class="text-sm text-slate-500 italic mb-3">SIGGRAPH Asia Conference Papers, 2024 
-                                    <!-- <span class="text-red-500 text-xs font-bold ml-2">Oral Presentation</span></p> -->
+                                <p class="text-sm text-slate-500 italic mb-3">SIGGRAPH Asia Conference Papers, 2024</p>
+                                    <!-- <span class="text-red-500 text-xs font-bold ml-2">Oral Presentation</span> -->
                                 <p class="text-sm text-slate-600 mb-4 line-clamp-2">
-                                    TLDR: Put together an egocentric human motion & mesh capture pipeline and a motion-driven Gaussian avatars for virtual teleconferencing.
+                                    TLDR: Put together an egocentric human motion &amp; mesh capture pipeline and a motion-driven Gaussian avatars for virtual teleconferencing.
                                 </p>
                                 <div class="flex gap-2">
                                     <a href="https://vcai.mpi-inf.mpg.de/projects/EgoAvatar/" class="px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 rounded-full hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-globe mr-1"></i> Webpage</a>
@@ -359,7 +390,7 @@
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight">
-                                    <a href="#" class="hover:text-blue-600 transition-colors">A Sequential Learning-based Approach for Monocular Human Performance Capture</a>
+                                    <a href="https://openaccess.thecvf.com/content/WACV2024/papers/Chen_A_Sequential_Learning-Based_Approach_for_Monocular_Human_Performance_Capture_WACV_2024_paper.pdf" class="hover:text-blue-600 transition-colors">A Sequential Learning-based Approach for Monocular Human Performance Capture</a>
                                 </h3>
                                 <p class="text-sm text-slate-600 mb-2">
                                     <span class="font-semibold text-slate-900">Jianchun Chen</span>, <a href="https://scholar.google.com/citations?user=lhu8iYQAAAAJ">Jayakorn Vongkulbhisal</a>, <a href="http://www.humansensing.cs.cmu.edu">Fernando De la Torre</a>
@@ -382,7 +413,7 @@
                                 </div>
                             <div class="flex-1">
                                 <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight">
-                                    <a href="#" class="hover:text-blue-600 transition-colors">Arbicon-net: Arbitrary continuous geometric transformation networks for image registration</a>
+                                    <a href="https://proceedings.neurips.cc/paper_files/paper/2019/file/56f9f88906aebf4ad985aaec7fa01313-Paper.pdf" class="hover:text-blue-600 transition-colors">Arbicon-net: Arbitrary continuous geometric transformation networks for image registration</a>
                                 </h3>
                                 <p class="text-sm text-slate-600 mb-2">
                                     <span class="font-semibold text-slate-900">Jianchun Chen</span>*, <a href="https://scholar.google.com/citations?user=95gSmswAAAAJ">Lingjing Wang</a>*, <a href="http://xiangli.ac.cn/">Xiang Li</a>, <a href="https://nyuair.github.io/website/">Yi Fang</a>
@@ -446,7 +477,7 @@
                             </div>
                             <div class="md:col-span-3">
                                 <div class="text-sm font-medium text-slate-800">
-                                    See the World in a Different Light: New Frontiers in Image & Video Relighting
+                                    See the World in a Different Light: New Frontiers in Image &amp; Video Relighting
                                 </div>
                                 <div class="text-xs text-blue-600 mt-1 font-medium">
                                     CVPR 2026
@@ -475,8 +506,8 @@
                     <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Personal Gallery</h2>
                     <div class="text-sm text-slate-600 mb-6 leading-relaxed">
                         I love photography, traveling and anything 
-                        <span class="relative inline-block z-20">
-                            <button onclick="toggleHikePopup(event)" class="group relative inline-block font-bold text-slate-600 hover:text-emerald-600 transition-colors cursor-pointer border-b border-dotted border-slate-400 hover:border-emerald-600 focus:outline-none">
+                        <div class="relative inline-block z-20">
+                            <button type="button" onclick="toggleHikePopup(event)" class="group relative inline-block font-bold text-slate-600 hover:text-emerald-600 transition-colors cursor-pointer border-b border-dotted border-slate-400 hover:border-emerald-600 focus:outline-none">
                                 outdoor
                             </button>
                             
@@ -489,53 +520,53 @@
                                 </h3>
                                 <ul class="space-y-3">
                                     <li>
-                                        <a href="https://www.komoot.com/tour/2613176026?ref=itd&share_token=a5JdrZwKXMWYE4iFalV77EHb34sTe8MOrZdtL3tyxOfurMuhF5&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                        <a href="https://www.komoot.com/tour/2613176026?ref=itd&amp;share_token=a5JdrZwKXMWYE4iFalV77EHb34sTe8MOrZdtL3tyxOfurMuhF5&amp;ref=its" target="_blank" rel="noopener noreferrer" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
                                             <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
                                             <span class="leading-tight"><span class="font-semibold">Tre Cime di Lavaredo</span> — Auronzo di Cadore, IT</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.komoot.com/tour/2660114199?ref=itd&share_token=aPs0ueJIfr6DBPUhcSTjGZ3ZOiWN8KU8ytYJkwx3sdB4KtPk6K&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                        <a href="https://www.komoot.com/tour/2660114199?ref=itd&amp;share_token=aPs0ueJIfr6DBPUhcSTjGZ3ZOiWN8KU8ytYJkwx3sdB4KtPk6K&amp;ref=its" target="_blank" rel="noopener noreferrer" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
                                             <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
                                             <span class="leading-tight"><span class="font-semibold">Oeschinensee</span> — Bern, CH</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.komoot.com/tour/2655126654?ref=itd&share_token=aWPTPbugjb47iFZ3rAeEzeunQaJ6QI1lpk48SvXViDlY5adZ01&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                        <a href="https://www.komoot.com/tour/2655126654?ref=itd&amp;share_token=aWPTPbugjb47iFZ3rAeEzeunQaJ6QI1lpk48SvXViDlY5adZ01&amp;ref=its" target="_blank" rel="noopener noreferrer" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
                                             <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
                                             <span class="leading-tight"><span class="font-semibold">Morteratsch Glacier</span> — Pontresina, CH</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.komoot.com/tour/1860429936?ref=itd&share_token=al2N4LCXtrWSlPwlmxnSjWrhqhwM8sKlLtHt1oqELj0Tt2qAUF&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                        <a href="https://www.komoot.com/tour/1860429936?ref=itd&amp;share_token=al2N4LCXtrWSlPwlmxnSjWrhqhwM8sKlLtHt1oqELj0Tt2qAUF&amp;ref=its" target="_blank" rel="noopener noreferrer" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
                                             <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
                                             <span class="leading-tight"><span class="font-semibold">Seiser Alm</span> — Kastelruth - Castelrotto, IT</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.komoot.com/tour/1808857613?ref=itd&share_token=av9bexat24Ab011ViYPJw2mGDd1jdS3EmftCggcPPE70FEa6wp&ref=its" target="_blank" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
+                                        <a href="https://www.komoot.com/tour/1808857613?ref=itd&amp;share_token=av9bexat24Ab011ViYPJw2mGDd1jdS3EmftCggcPPE70FEa6wp&amp;ref=its" target="_blank" rel="noopener noreferrer" class="group/link flex items-start gap-2 text-xs text-slate-600 hover:text-emerald-700 transition-colors">
                                             <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/link:bg-emerald-500 transition-colors mt-1 shrink-0"></span>
                                             <span class="leading-tight"><span class="font-semibold">Olpererhutte</span> — Finkenberg, AT</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                        </span>. When my algorithms are not generating image, I generate image with my own camera. If you find me anywhere, I would be more than happy to help with your portrait shoots!
+                        </div>. When my algorithms are not generating images, I make images with my own camera. If you find me anywhere, I would be more than happy to help with your portrait shoots!
                     </div>
 
                     <div class="relative group">
                         
-                        <button onclick="scrollGallery(-1)" class="absolute left-0 top-[128px] -translate-y-1/2 z-10 p-3 bg-white/90 rounded-full shadow-md hover:bg-white hover:text-blue-600 transition-all opacity-0 group-hover:opacity-100 -ml-5 focus:opacity-100 border border-slate-100">
+                        <button type="button" onclick="scrollGallery(-1)" class="absolute left-0 top-[128px] -translate-y-1/2 z-10 p-3 bg-white/90 rounded-full shadow-md hover:bg-white hover:text-blue-600 transition-all opacity-0 group-hover:opacity-100 -ml-5 focus:opacity-100 border border-slate-100" aria-label="Scroll gallery left">
                             <i class="fas fa-chevron-left text-slate-700"></i>
                         </button>
                         
-                        <button onclick="scrollGallery(1)" class="absolute right-0 top-[128px] -translate-y-1/2 z-10 p-3 bg-white/90 rounded-full shadow-md hover:bg-white hover:text-blue-600 transition-all opacity-0 group-hover:opacity-100 -mr-5 focus:opacity-100 border border-slate-100">
+                        <button type="button" onclick="scrollGallery(1)" class="absolute right-0 top-[128px] -translate-y-1/2 z-10 p-3 bg-white/90 rounded-full shadow-md hover:bg-white hover:text-blue-600 transition-all opacity-0 group-hover:opacity-100 -mr-5 focus:opacity-100 border border-slate-100" aria-label="Scroll gallery right">
                             <i class="fas fa-chevron-right text-slate-700"></i>
                         </button>
                         
                         <div id="gallery-container" class="flex items-start gap-4 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-4">
                             
-                            <div class="flex-shrink-0 snap-start group/item cursor-pointer" onclick="openModal('images/DSC06653.jpg')">
+                            <div class="flex-shrink-0 snap-start group/item cursor-pointer" onclick="openModal('images/DSC06653_compressed.jpg')">
                                 <div class="h-64 w-fit flex items-center justify-center overflow-hidden rounded-lg shadow-sm border border-slate-100 bg-white">
                                     <img src="images/DSC06653_compressed.jpg" alt="St. Moritz" class="h-full w-auto max-w-none object-contain transition duration-500 group-hover/item:opacity-90">
                                 </div>
@@ -553,17 +584,17 @@
                                 <div class="h-64 w-fit flex items-center justify-center overflow-hidden rounded-lg shadow-sm border border-slate-100 bg-white">
                                     <img src="images/DSC04153-2.jpg" alt="DB" class="h-full w-auto max-w-none object-contain transition duration-500 group-hover:opacity-90">
                                 </div>
-                                <p class="mt-2 text-xs text-center font-medium text-slate-500 uppercase tracking-wide">Deutsch Bahn, Germany</p>
+                                <p class="mt-2 text-xs text-center font-medium text-slate-500 uppercase tracking-wide">Deutsche Bahn, Germany</p>
                             </div>
 
-                            <div class="flex-shrink-0 snap-start group/item cursor-pointer" onclick="openModal('images/DSC06111-2.jpg')">
+                            <div class="flex-shrink-0 snap-start group/item cursor-pointer" onclick="openModal('images/DSC06111_compressed.jpg')">
                                 <div class="h-64 w-fit flex items-center justify-center overflow-hidden rounded-lg shadow-sm border border-slate-100 bg-white">
                                     <img src="images/DSC06111_compressed.jpg" alt="Dolomite" class="h-full w-auto max-w-none object-contain transition duration-500 group-hover:opacity-90">
                                 </div>
                                 <p class="mt-2 text-xs text-center font-medium text-slate-500 uppercase tracking-wide">Tre Cime, Italy</p>
                             </div>
 
-                            <div class="flex-shrink-0 snap-start group/item cursor-pointer" onclick="openModal('images/DSC06280-2.jpg')">
+                            <div class="flex-shrink-0 snap-start group/item cursor-pointer" onclick="openModal('images/DSC06280_compressed.jpg')">
                                 <div class="h-64 w-fit flex items-center justify-center overflow-hidden rounded-lg shadow-sm border border-slate-100 bg-white">
                                     <img src="images/DSC06280_compressed.jpg" alt="Venice" class="h-full w-auto max-w-none object-contain transition duration-500 group-hover:opacity-90">
                                 </div>
@@ -577,8 +608,8 @@
                 <footer class="pt-8 border-t border-slate-200 text-center md:text-left">
                     <p class="text-xs text-slate-400">
                         © 2026 Jianchun Chen. Built with Tailwind CSS. <br>
-                        Designed with <a href="https://gemini.google.com/" target="_blank" class="underline hover:text-slate-600">Gemini 3 Pro</a>.
-                        Photo credit: <a href="https://hans1984.github.io/" target="_blank" class="underline hover:text-slate-600">Chao Wang</a>.
+                        Designed with <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-600">Gemini 3 Pro</a>.
+                        Photo credit: <a href="https://hans1984.github.io/" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-600">Chao Wang</a>.
                     </p>
                 </footer>
             </div>
@@ -588,9 +619,9 @@
     <!-- Lightbox Modal -->
     <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="closeModal()">
     
-        <img id="lightbox-img" src="" alt="Full size" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 object-contain">
+        <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Full size" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 object-contain">
         
-        <button class="absolute top-4 right-4 text-white hover:text-gray-300 text-3xl focus:outline-none cursor-pointer p-2" title="Close">
+        <button type="button" class="absolute top-4 right-4 text-white hover:text-gray-300 text-3xl focus:outline-none cursor-pointer p-2" title="Close" aria-label="Close image viewer">
             &times;
         </button>
     </div>
@@ -600,8 +631,6 @@
             "images/7951755006959_.pic_hd-2.jpg",
             "images/8071755007099_.pic_hd-2.jpg",
             "images/8201755007460_.pic_hd-2.jpg",
-            // "images/7971755006983_.pic_hd-2.jpg",
-            // "images/8141755007264_.pic_hd-2.jpg",
             // "images/DSC02507-2.jpg"
             // "https://api.dicebear.com/7.x/avataaars/svg?seed=Zoey&backgroundColor=ffdfd3",
             // "https://api.dicebear.com/7.x/avataaars/svg?seed=Jack&backgroundColor=e1f8dc"
@@ -620,6 +649,7 @@
         // Simple Lightbox Logic
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
+        const emptyLightboxImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
         function openModal(src) {
             lightbox.classList.remove('hidden');
@@ -638,7 +668,7 @@
             lightboxImg.classList.add('scale-95');
             setTimeout(() => {
                 lightbox.classList.add('hidden');
-                lightboxImg.src = '';
+                lightboxImg.src = emptyLightboxImage;
             }, 300);
         }
 
@@ -669,13 +699,13 @@
         function toggleContributionCode(event) {
             event.stopPropagation(); // Stops the click from instantly closing the popover
             const popover = document.getElementById('contribution-code-popover');
-            popover.classList.toggle('hidden');
+            if (popover) popover.classList.toggle('hidden');
         }
 
         function toggleEmailPopup(event) {
             event.stopPropagation(); // Stops the click from instantly closing the popover
             const popover = document.getElementById('email-popover');
-            popover.classList.toggle('hidden');
+            if (popover) popover.classList.toggle('hidden');
         }
 
         function toggleHikePopup(e) {
@@ -703,6 +733,14 @@
                 // Close it if we click anywhere outside of it
                 if (!event.target.closest('#contribution-code-popover')) {
                     contribPopover.classList.add('hidden');
+                }
+            }
+
+            // 3. Check Hike Popover
+            const hikePopover = document.getElementById('hike-popover');
+            if (hikePopover && !hikePopover.classList.contains('hidden')) {
+                if (!event.target.closest('#hike-popover')) {
+                    hikePopover.classList.add('hidden');
                 }
             }
         });
