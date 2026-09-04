@@ -9,7 +9,7 @@
     <!-- Font Awesome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Inter:wght@300;400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -121,6 +121,17 @@
                 transform: none;
             }
         }
+
+        /* Keep the original site typography, with a formal profile-card accent. */
+        .glass-panel h1 {
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-weight: 600;
+        }
+
+        .glass-panel > p {
+            font-family: "Source Serif 4", Georgia, serif;
+            font-optical-sizing: auto;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans selection:bg-blue-100 selection:text-blue-900">
@@ -202,8 +213,8 @@
                     <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Biography</h2>
                     <div class="max-w-none text-slate-600 leading-7">
                         <p class="mb-4">
-                            I am currently a Ph.D. student at the <strong class="text-slate-800">Visual Computing and AI department, Max Planck Institute for Informatics</strong>, working with Prof. <a href="https://people.mpi-inf.mpg.de/~theobalt/"> Christian Theobalt </a>, <a href="https://people.mpi-inf.mpg.de/~mhaberma/"> Dr. Marc Habermann</a> and researchers from Google through <a href="https://www.via-center.science/"> VIA center</a>. 
-                            Prior to this, I obtained my Master's degree in Robotics from <strong class="text-slate-800">Carnegie Mellon University</strong> with Prof. <a href="http://www.humansensing.cs.cmu.edu/"> Fernando De la Torre </a> and Bachelor's degree from <strong class="text-slate-800">Xiamen University</strong> in my beautiful hometown.
+                            I am currently a Ph.D. student at the <strong class="text-slate-800"><a href="https://www.mpi-inf.mpg.de/departments/visual-computing-and-artificial-intelligence">Visual Computing and AI department, Max Planck Institute for Informatics</a></strong>, working with Prof. <a href="https://people.mpi-inf.mpg.de/~theobalt/" class="underline decoration-dotted decoration-1 underline-offset-2">Christian Theobalt</a>, <a href="https://people.mpi-inf.mpg.de/~mhaberma/" class="underline decoration-dotted decoration-1 underline-offset-2">Dr. Marc Habermann</a> and researchers from Google through <a href="https://www.via-center.science/"> VIA center</a>.
+                            Prior to this, I obtained my Master's degree in Robotics from <strong class="text-slate-800"><a href="https://www.ri.cmu.edu/">Carnegie Mellon University</a></strong> with Prof. <a href="http://www.humansensing.cs.cmu.edu/" class="underline decoration-dotted decoration-1 underline-offset-2">Fernando De la Torre</a> and Bachelor's degree from <strong class="text-slate-800">Xiamen University</strong> in my beautiful hometown.
                         </p>
                         <p>
                             My research lies at the intersection of <span class="bg-blue-50 text-blue-700 px-1 rounded">Computer Graphics</span>, <span class="bg-blue-50 text-blue-700 px-1 rounded">Computer Vision</span> and <span class="bg-blue-50 text-blue-700 px-1 rounded">Generative AI</span>
