@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jianchun Chen</title>
+    <link rel="stylesheet" href="assets/travel/travel.css">
+    <script defer src="assets/travel/travel.js"></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -517,7 +519,7 @@
                 <section id="gallery" class="fade-in-up scroll-mt-24 mb-12">
                     <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Personal Gallery</h2>
                     <div class="text-sm text-slate-600 mb-6 leading-relaxed">
-                        I love photography, traveling and anything 
+                        I love photography, <button type="button" id="travel-trigger" class="travel-trigger" aria-haspopup="dialog" aria-controls="travel-popover" aria-expanded="false">traveling</button> and anything
                         <div class="relative inline-block z-20">
                             <button type="button" onclick="toggleHikePopup(event)" class="group relative inline-block font-bold text-slate-600 hover:text-emerald-600 transition-colors cursor-pointer border-b border-dotted border-slate-400 hover:border-emerald-600 focus:outline-none">
                                 outdoor
@@ -640,6 +642,12 @@
                 </footer>
             </div>
         </div>
+    </div>
+
+    <!-- Travel globe: its map and rendering library load only when opened. -->
+    <div id="travel-popover" class="travel-popover" role="dialog" aria-label="Travel globe" hidden>
+        <div id="travel-globe" role="group" aria-label="Interactive Earth"></div>
+        <div id="travel-loading" class="travel-loading" role="status" aria-label="Loading globe"></div>
     </div>
 
     <!-- Lightbox Modal -->

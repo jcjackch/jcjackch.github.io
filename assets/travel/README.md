@@ -1,0 +1,12 @@
+# Travel globe
+
+Opened by the “traveling” button in the main page. No build step, API key, or runtime map service is needed. The renderer and map load only on first opening, including when the HTML is opened directly from disk.
+
+- Edit the `lived` (gold) and `visited` (teal) lists in `travel.js`. They control the map fills, markers, and screen-reader descriptions. Lived places take priority if a place appears in both lists. Lived: China, USA, Switzerland, Germany, Taiwan. Visited: Japan, Thailand, Australia, France, Spain, Austria, Italy, Hungary, Czechia, Netherlands, Portugal.
+- `countries.js`: Natural Earth 1:110m admin-0 countries, public domain; coordinates rounded to 3 decimals and unused properties removed. Source: https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson (downloaded 2026-10-07). Boundaries are approximate cartographic data, not a political statement. https://www.naturalearthdata.com/about/terms-of-use/
+- `vendor/three.min.js`: Three.js 0.160.1, MIT; license alongside it. This pinned classic-script distribution supports direct local-file previews without a module server. Source: https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js
+- Solar declination and equation of time follow NOAA’s approximate equations: https://gml.noaa.gov/grad/solcalc/solareqns.PDF . Lighting updates every 30 seconds while open and uses UTC, independently of the viewer’s time zone.
+
+The globe-only popover is 200 × 190px on desktop (matching the outdoor popover’s approximate height) and 180 × 170px on mobile, with no visible text, backdrop, or page-scroll lock. It supports mouse/touch dragging, pinch/wheel zoom, arrow-key rotation, +/- zoom, Escape, outside-click dismissal, and screen-reader labels. Both highlight colors stay visible on the nighttime side. Rendering pauses when the popover or browser tab is hidden. Reduced-motion preferences disable animated camera moves. Map assets are kept local and no location permission is requested.
+
+Run the dependency-free checks with `node assets/travel/travel.test.cjs`. Browser QA should additionally check dragging, popover positioning/dismissal, and narrow screens.
