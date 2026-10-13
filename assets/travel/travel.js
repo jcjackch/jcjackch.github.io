@@ -26,6 +26,11 @@
         return [Math.cos(phi) * Math.sin(theta), Math.sin(phi), Math.cos(phi) * Math.cos(theta)];
     }
 
+    // CanvasTexture stores these CSS color channels without a color-space conversion.
+    function colorChannels(hex) {
+        return [1, 3, 5].map(offset => parseInt(hex.slice(offset, offset + 2), 16) / 255);
+    }
+
     const lived = [
         { code: 'CHN', name: 'China', lat: 35.9, lng: 104.2 },
         { code: 'USA', name: 'United States', lat: 38, lng: -97 },
@@ -44,13 +49,14 @@
         { code: 'HUN', name: 'Hungary', lat: 47.2, lng: 19.5 },
         { code: 'CZE', name: 'Czechia', lat: 49.8, lng: 15.5 },
         { code: 'NLD', name: 'Netherlands', lat: 52.1, lng: 5.3 },
-        { code: 'PRT', name: 'Portugal', lat: 39.4, lng: -8.2 }
+        { code: 'PRT', name: 'Portugal', lat: 39.4, lng: -8.2 },
+        { code: 'LUX', name: 'Luxembourg', lat: 49.8, lng: 6.1 }
     ];
     const livedCodes = new Set(lived.map(country => country.code));
     const visitedCodes = new Set(visited.map(country => country.code));
     const palette = {
-        lived: { fill: '#efbd77', stroke: '#ffdfac', marker: '#ffdfac' },
-        visited: { fill: '#62cfbc', stroke: '#a1f0df', marker: '#a1f0df' },
+        lived: { label: 'Warm sand', fill: '#c6ad91', stroke: '#ddd0bf', marker: '#d1bda5' },
+        visited: { label: 'Dusty lavender', fill: '#baa3bd', stroke: '#d7cbd8', marker: '#c8b7ca' },
         other: { fill: '#789caa', stroke: '#385d72' }
     };
     function countryCategory(code) {
@@ -104,7 +110,7 @@
             const y = (90 - lat) / 180 * map.height;
             ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(map.width, y); ctx.stroke();
         }
-        // Highlighted places go on top; lived places retain their gold borders.
+        // Highlighted places go on top; lived places retain their warm borders.
         const paintOrder = { other: 0, visited: 1, lived: 2 };
         const features = [...window.TRAVEL_COUNTRIES].sort((a, b) =>
             paintOrder[countryCategory(a.properties.code)] - paintOrder[countryCategory(b.properties.code)]);
@@ -147,7 +153,14 @@
         // Align equirectangular texture longitude 0 with +Z, north with +Y.
         geometry.rotateY(-Math.PI / 2);
         const material = new THREE.ShaderMaterial({
-            uniforms: { earthMap: { value: mapTexture(THREE, renderer) }, sunDirection: { value: sun } },
+            uniforms: {
+                earthMap: { value: mapTexture(THREE, renderer) },
+                sunDirection: { value: sun },
+                highlightColors: {
+                    value: [palette.lived.fill, palette.lived.stroke, palette.visited.fill, palette.visited.stroke]
+                        .map(hex => new THREE.Vector3(...colorChannels(hex)))
+                }
+            },
             vertexShader: `
                 varying vec2 mapUv;
                 varying vec3 earthNormal;
@@ -164,6 +177,7 @@
             fragmentShader: `
                 uniform sampler2D earthMap;
                 uniform vec3 sunDirection;
+                uniform vec3 highlightColors[4];
                 varying vec2 mapUv;
                 varying vec3 earthNormal;
                 varying vec3 viewNormal;
@@ -172,11 +186,14 @@
                     vec3 color = texture2D(earthMap, mapUv).rgb;
                     float solar = dot(normalize(earthNormal), sunDirection);
                     float daylight = smoothstep(-0.10, 0.10, solar);
-                    // Keep both gold (lived) and teal (visited) legible at night.
-                    float lived = smoothstep(0.15, 0.35, color.r - color.b);
-                    float visited = smoothstep(0.23, 0.38, color.g - color.r);
+                    // Match the configured palette, not assumptions about its hues.
+                    float highlightDistance = 2.0;
+                    for (int i = 0; i < 4; i++) {
+                        highlightDistance = min(highlightDistance, distance(color, highlightColors[i]));
+                    }
+                    float highlighted = 1.0 - smoothstep(0.03, 0.16, highlightDistance);
                     vec3 night = color * vec3(0.15, 0.22, 0.32);
-                    night = mix(night, color * 0.60, max(lived, visited));
+                    night = mix(night, color * 0.60, highlighted);
                     vec3 day = color * (0.78 + 0.22 * max(solar, 0.0));
                     float rim = pow(1.0 - max(dot(normalize(viewNormal), normalize(viewDirection)), 0.0), 3.0);
                     vec3 atmosphere = vec3(0.16, 0.38, 0.56) * rim * (0.35 + 0.65 * daylight);
@@ -196,7 +213,7 @@
         }
         const canvas = renderer.domElement;
         canvas.tabIndex = 0;
-        canvas.setAttribute('aria-label', `World globe. Gold, lived in: ${lived.map(country => country.name).join(', ')}. Teal, visited: ${visited.map(country => country.name).join(', ')}. Drag or use arrow keys to rotate, scroll or use plus and minus to zoom. Escape to close.`);
+        canvas.setAttribute('aria-label', `World globe. ${palette.lived.label}, lived in: ${lived.map(country => country.name).join(', ')}. ${palette.visited.label}, visited: ${visited.map(country => country.name).join(', ')}. Drag or use arrow keys to rotate, scroll or use plus and minus to zoom. Escape to close.`);
         container.appendChild(canvas);
         let pitch = 28 * Math.PI / 180;
         let yaw = -25 * Math.PI / 180;
